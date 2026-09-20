@@ -6,16 +6,17 @@
 <title>صدقة جارية - من نهار - انكاء</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
 <style>
-body{background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;padding:15px}
+html,body{margin:0;padding:0;background:#000}
+body{text-align:center;font-family:'Amiri',serif;padding:15px;color:#fff}
 h2{color:#FFD700;font-family:'Reem Kufi'}
-.card{max-width:380px;margin:15px auto;background:linear-gradient(180deg,#0f2027,#2c5364);border:2px solid #FFD700;border-radius:20px;padding:30px 15px;min-height:520px;display:flex;flex-direction:column;justify-content:center}
-.aya{font-size:30px;line-height:1.9;font-weight:bold;margin:20px 0}
-.sura{color:#FFD700;font-size:24px;font-family:'Reem Kufi';margin:10px}
-.name{color:#fff;font-size:15px;margin-top:15px}
-.duaa{color:#FFD700;font-size:17px;margin-top:15px;border-top:1px solid #FFD70044;padding-top:10px}
-button{background:#27ae60;color:#fff;padding:12px 20px;border:none;border-radius:10px;margin:6px;font-weight:bold;font-size:16px}
+.card{max-width:380px;margin:15px auto;background:#0f2027;border:2px solid #FFD700;border-radius:20px;padding:30px 15px;min-height:520px;display:flex;flex-direction:column;justify-content:center;isolation:isolate}
+.aya{font-size:30px;line-height:2;font-weight:bold;margin:20px 0;color:#fff}
+.sura{color:#FFD700;font-size:24px;font-family:'Reem Kufi'}
+.name{color:#ddd;font-size:15px;margin-top:15px}
+.duaa{color:#FFD700;font-size:17px;margin-top:15px;border-top:1px solid #FFD70066;padding-top:10px}
+button{background:#27ae60;color:#fff;padding:12px 20px;border:none;border-radius:10px;margin:6px;font-weight:bold}
 select,input{width:92%;max-width:380px;padding:12px;border-radius:8px;margin:5px;background:#222;color:#fff;border:1px solid #FFD700}
-#counter{border:1px solid #FFD700;padding:8px 15px;border-radius:10px;display:inline-block;margin:10px}
+#counter{border:1px solid #FFD700;padding:8px 15px;border-radius:10px;display:inline-block;background:#111}
 </style>
 </head>
 <body>
@@ -23,38 +24,21 @@ select,input{width:92%;max-width:380px;padding:12px;border-radius:8px;margin:5px
 <div id="counter">👁️ الزوار: <b id="cnt">0</b> - كل زيارة حسنة</div><br>
 <select id="sura"></select><br>
 <input id="duaa" value="اللهم اغفر لنهار ولوالديه وارحمهما"><br>
-
 <div id="card" class="card">
-  <div style="font-size:50px">🕌</div>
+  <div style="font-size:45px">🕌</div>
   <div id="aya" class="aya">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
   <div id="suraName" class="sura">سورة الفاتحة</div>
   <div class="name">صدقة جارية - من نهار - انكاء<br>دارفور</div>
   <div id="duaaShow" class="duaa">اللهم اغفر لنهار ولوالديه وارحمهما</div>
-  <div style="color:#aaa;font-size:12px;margin-top:10px" id="date"></div>
+  <div style="color:#888;font-size:11px;margin-top:10px" id="date"></div>
 </div>
-
 <button onclick="make()">تحديث الآية ✨</button>
-<button onclick="alert('اعمل سكرين شوت للكارت ورسلو واتساب')" style="background:#25D366">سكرين شوت 📸</button>
-
+<button onclick="alert('اعمل سكرين شوت للكارت الأزرق')" style="background:#25D366">سكرين شوت 📸</button>
 <script>
 const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
-const ayat=[
-"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-"الرَّحْمَٰنِ الرَّحِيمِ",
-"مَالِكِ يَوْمِ الدِّينِ",
-"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
-"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
-"قُلْ هُوَ اللَّهُ أَحَدٌ",
-"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
-"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
-"وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا",
-"إِنَّ مَعَ الْعُسْرِ يُسْرًا",
-"فَاذْكُرُونِي أَذْكُرْكُمْ"
-];
-let sel=document.getElementById('sura'); suras.forEach(s=>{let o=document.createElement('option');o.textContent="سورة "+s;sel.appendChild(o)}); 
-sel.selectedIndex=0;
-let c=parseInt(localStorage.getItem('nhar-c')||'13'); c++; localStorage.setItem('nhar-c',c); document.getElementById('cnt').textContent=c; document.getElementById('date').textContent=new Date().toLocaleDateString('ar-EG');
+const ayat=["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ","الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ","الرَّحْمَٰنِ الرَّحِيمِ","مَالِكِ يَوْمِ الدِّينِ","إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ","اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ","قُلْ هُوَ اللَّهُ أَحَدٌ","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","إِنَّ مَعَ الْعُسْرِ يُسْرًا"];
+let sel=document.getElementById('sura'); suras.forEach(s=>{let o=document.createElement('option');o.textContent="سورة "+s;sel.appendChild(o)}); sel.selectedIndex=0;
+let c=parseInt(localStorage.getItem('nhar-c')||'17'); c++; localStorage.setItem('nhar-c',c); document.getElementById('cnt').textContent=c; document.getElementById('date').textContent=new Date().toLocaleDateString('ar-EG');
 function make(){ document.getElementById('suraName').textContent=sel.value; document.getElementById('aya').innerHTML=ayat[Math.floor(Math.random()*ayat.length)]; document.getElementById('duaaShow').textContent=document.getElementById('duaa').value; }
 document.getElementById('duaa').addEventListener('input',()=>{document.getElementById('duaaShow').textContent=document.getElementById('duaa').value});
 make();
