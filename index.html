@@ -6,58 +6,58 @@
 <title>صدقة جارية - من نهار - انكاء</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
 <style>
-body{background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;margin:0;padding:10px}
-h2{font-family:'Reem Kufi';color:#FFD700}
-#counter{background:#111;border:1px solid #FFD700;border-radius:12px;padding:10px 15px;display:inline-block;margin:10px}
-#counter b{color:#FFD700}
-canvas{width:100%;max-width:400px;border-radius:15px;border:2px solid #FFD70055}
-button{background:#27ae60;color:#fff;padding:13px 22px;border:none;border-radius:10px;font-size:17px;margin:6px;font-weight:bold}
-select,input{padding:12px;font-size:16px;border-radius:8px;width:92%;max-width:400px;margin:5px;border:1px solid #FFD700;background:#222;color:#fff}
+body{background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;padding:15px}
+h2{color:#FFD700;font-family:'Reem Kufi'}
+.card{max-width:380px;margin:15px auto;background:linear-gradient(180deg,#0f2027,#2c5364);border:2px solid #FFD700;border-radius:20px;padding:30px 15px;min-height:520px;display:flex;flex-direction:column;justify-content:center}
+.aya{font-size:30px;line-height:1.9;font-weight:bold;margin:20px 0}
+.sura{color:#FFD700;font-size:24px;font-family:'Reem Kufi';margin:10px}
+.name{color:#fff;font-size:15px;margin-top:15px}
+.duaa{color:#FFD700;font-size:17px;margin-top:15px;border-top:1px solid #FFD70044;padding-top:10px}
+button{background:#27ae60;color:#fff;padding:12px 20px;border:none;border-radius:10px;margin:6px;font-weight:bold;font-size:16px}
+select,input{width:92%;max-width:380px;padding:12px;border-radius:8px;margin:5px;background:#222;color:#fff;border:1px solid #FFD700}
+#counter{border:1px solid #FFD700;padding:8px 15px;border-radius:10px;display:inline-block;margin:10px}
 </style>
 </head>
 <body>
 <h2>🌙 صدقة جارية - من نهار - انكاء</h2>
-<div id="counter">👁️ عدد الزوار: <b id="count">4</b><br><small>كل زيارة = حسنة جارية لك</small></div>
-<br>
+<div id="counter">👁️ الزوار: <b id="cnt">0</b> - كل زيارة حسنة</div><br>
 <select id="sura"></select><br>
-<input id="duaa" value="اللهم اغفر لنهار ولوالديه وارحمهما">
-<br><br>
-<canvas id="c" width="1080" height="1920"></canvas>
-<br>
+<input id="duaa" value="اللهم اغفر لنهار ولوالديه وارحمهما"><br>
+
+<div id="card" class="card">
+  <div style="font-size:50px">🕌</div>
+  <div id="aya" class="aya">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+  <div id="suraName" class="sura">سورة الفاتحة</div>
+  <div class="name">صدقة جارية - من نهار - انكاء<br>دارفور</div>
+  <div id="duaaShow" class="duaa">اللهم اغفر لنهار ولوالديه وارحمهما</div>
+  <div style="color:#aaa;font-size:12px;margin-top:10px" id="date"></div>
+</div>
+
 <button onclick="make()">تحديث الآية ✨</button>
-<button onclick="share()" style="background:#25D366">مشاركة واتساب 📤</button>
+<button onclick="alert('اعمل سكرين شوت للكارت ورسلو واتساب')" style="background:#25D366">سكرين شوت 📸</button>
 
 <script>
 const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
-const ayat=["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","قُلْ هُوَ اللَّهُ أَحَدٌ","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","قُلْ أَعُوذُ بِرَبِّ النَّاسِ","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ","وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا","إِنَّ مَعَ الْعُسْرِ يُسْرًا","فَاذْكُرُونِي أَذْكُرْكُمْ","وَاللَّهُ خَيْرٌ حَافِظًا","إِنَّ اللَّهَ مَعَ الصَّابِرِينَ"];
-const canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
-let curAya=ayat[2], curSura="سورة الفلق";
-const sel=document.getElementById('sura');
-suras.forEach(s=>{let o=document.createElement('option');o.textContent="سورة "+s;sel.appendChild(o);});
-sel.selectedIndex=112;
-let cnt=parseInt(localStorage.getItem('nhar-cnt')||'4'); cnt++; localStorage.setItem('nhar-cnt',cnt); document.getElementById('count').textContent=cnt+" زائر";
-
-function draw(){
-  // خلفية ثابتة شغالة بدون نت - تدرج إسلامي جميل
-  let g=ctx.createLinearGradient(0,0,0,1920);
-  g.addColorStop(0,"#0f2027"); g.addColorStop(0.5,"#203a43"); g.addColorStop(1,"#2c5364");
-  ctx.fillStyle=g; ctx.fillRect(0,0,1080,1920);
-  // زخرفة
-  ctx.fillStyle="rgba(255,215,0,0.07)"; ctx.beginPath(); ctx.arc(540,400,300,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle="rgba(255,255,255,0.05)"; ctx.fillRect(0,1400,1080,100);
-  // نص
-  ctx.fillStyle="#fff"; ctx.textAlign="center";
-  ctx.font="bold 68px Amiri"; wrapText(curAya,540,750,900,80);
-  ctx.font="34px Reem Kufi"; ctx.fillStyle="#FFD700"; ctx.fillText(curSura,540,1050);
-  ctx.font="26px Amiri"; ctx.fillStyle="#fff"; ctx.fillText("صدقة جارية - من نهار - انكاء",540,1120);
-  ctx.font="bold 24px Amiri"; ctx.fillStyle="#FFD700"; let d=document.getElementById('duaa').value; wrapText(d,540,1210,850,38);
-  ctx.fillStyle="#aaa"; ctx.font="20px Amiri"; ctx.fillText("دارفور - "+new Date().toLocaleDateString('ar-EG'),540,1350);
-}
-function wrapText(text,x,y,maxW,lineH){ let words=text.split(' '), line='', lines=[]; for(let w of words){ let t=line+w+' '; if(ctx.measureText(t).width>maxW && line!=''){ lines.push(line); line=w+' '; }else line=t; } lines.push(line); let sy=y-(lines.length-1)*lineH/2; lines.forEach((l,i)=>ctx.fillText(l,x,sy+i*lineH)); }
-function make(){ curSura=sel.value; curAya=ayat[Math.floor(Math.random()*ayat.length)]; draw(); }
-function share(){ canvas.toBlob(b=>{ const f=new File([b],"nhar-inkaa.png",{type:"image/png"}); if(navigator.canShare && navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"من نهار - انكاء",text:curSura}); }else{ const a=document.createElement('a'); a.download="nhar-inkaa.png"; a.href=canvas.toDataURL(); a.click(); } }); }
-document.getElementById('duaa').addEventListener('input',draw);
-draw();
+const ayat=[
+"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+"الرَّحْمَٰنِ الرَّحِيمِ",
+"مَالِكِ يَوْمِ الدِّينِ",
+"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+"قُلْ هُوَ اللَّهُ أَحَدٌ",
+"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
+"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+"وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا",
+"إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+"فَاذْكُرُونِي أَذْكُرْكُمْ"
+];
+let sel=document.getElementById('sura'); suras.forEach(s=>{let o=document.createElement('option');o.textContent="سورة "+s;sel.appendChild(o)}); 
+sel.selectedIndex=0;
+let c=parseInt(localStorage.getItem('nhar-c')||'13'); c++; localStorage.setItem('nhar-c',c); document.getElementById('cnt').textContent=c; document.getElementById('date').textContent=new Date().toLocaleDateString('ar-EG');
+function make(){ document.getElementById('suraName').textContent=sel.value; document.getElementById('aya').innerHTML=ayat[Math.floor(Math.random()*ayat.length)]; document.getElementById('duaaShow').textContent=document.getElementById('duaa').value; }
+document.getElementById('duaa').addEventListener('input',()=>{document.getElementById('duaaShow').textContent=document.getElementById('duaa').value});
+make();
 </script>
 </body>
 </html>
