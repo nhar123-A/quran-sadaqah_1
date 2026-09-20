@@ -3,53 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>من نهار - انكاء</title>
+<title>صدقة جارية - نهار - انكاء</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;padding:10px}
-.card{max-width:360px;margin:15px auto;background:#111;border:2px solid #FFD700;border-radius:18px;padding:20px}
-.aya{font-size:32px;line-height:1.9;color:#fff}
+body{background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;margin:0;padding:12px}
+.card{max-width:370px;margin:15px auto;background:#111;border:2px solid #FFD700;border-radius:20px;padding:20px}
+.aya{font-size:32px;line-height:2}
 .sura{color:#FFD700;font-size:20px;margin:10px}
-button{padding:12px 18px;border:none;border-radius:10px;margin:5px;font-weight:bold;background:#27ae60;color:#fff}
-select,input{width:90%;max-width:360px;padding:10px;border-radius:8px;margin:5px;background:#222;color:#fff;border:1px solid #555}
+button{padding:12px 18px;border:none;border-radius:10px;margin:5px;font-weight:bold}
+select,input{width:92%;max-width:370px;padding:11px;border-radius:10px;margin:5px;background:#222;color:#fff;border:1px solid #555}
+audio{width:92%;max-width:370px;margin:12px 0;border-radius:10px}
+#msg{color:#FFD700;font-size:13px}
 </style>
 </head>
 <body>
 <h2 style="color:#FFD700">🕌 إسلام صبحي - من نهار - انكاء</h2>
-<p style="color:#aaa;font-size:12px">37 زائر - نسخة خفيفة للنت الضعيف</p>
-
+<div id="msg">جرب سورة الإخلاص أول - حجمها صغير وبتشتغل بسرعة</div><br>
 <select id="sura"></select><br>
 <input id="duaa" value="اللهم اغفر لنهار ولوالديه وارحمهما"><br>
+
+<audio id="audio" controls></audio><br>
+<button onclick="playIslam()" style="background:#FFD700;color:#000">▶️ شغل إسلام صبحي</button>
+<button onclick="nextServer()" style="background:#444;color:#fff">🔄 جرب سيرفر تاني</button>
 
 <div id="card" class="card">
 <div style="font-size:40px">📖</div>
 <div id="aya" class="aya">قُلْ هُوَ اللَّهُ أَحَدٌ</div>
 <div id="suraName" class="sura">سورة الإخلاص</div>
-<div style="margin-top:15px">
-<iframe id="yt" width="100%" height="200" src="https://www.youtube.com/embed/8u1c3yQfm2g?rel=0" frameborder="0" allowfullscreen></iframe>
-</div>
-<div id="duaaShow" style="color:#FFD700;margin-top:10px;font-size:15px">اللهم اغفر لنهار ولوالديه وارحمهما</div>
-<div style="color:#aaa;font-size:11px;margin-top:5px">صدقة جارية - من نهار - انكاء</div>
+<div id="duaaShow" style="color:#FFD700;margin-top:10px;border-top:1px solid #333;padding-top:8px">اللهم اغفر لنهار ولوالديه وارحمهما</div>
+<div style="color:#888;font-size:11px;margin-top:8px">صدقة جارية - من نهار - انكاء - دارفور</div>
 </div>
 
-<button onclick="make()">تحديث الآية ✨</button>
-<button onclick="sharePage()" style="background:#25D366">واتساب 📤</button>
-
-<p style="color:#777;font-size:11px">لو الفيديو ما اشتغل: افتح يوتيوب واكتب: إسلام صبحي الإخلاص</p>
+<button onclick="make()" style="background:#27ae60;color:#fff">تحديث الآية ✨</button>
+<button onclick="shareIt()" style="background:#25D366;color:#fff">واتساب 📤</button>
 
 <script>
 const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
-const data={
-1:{text:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",yt:"https://www.youtube.com/embed/8u1c3yQfm2g"},
-112:{text:"قُلْ هُوَ اللَّهُ أَحَدٌ",yt:"https://www.youtube.com/embed/8u1c3yQfm2g"},
-113:{text:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",yt:"https://www.youtube.com/embed/8u1c3yQfm2g"},
-114:{text:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ",yt:"https://www.youtube.com/embed/8u1c3yQfm2g"},
-67:{text:"تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ",yt:"https://www.youtube.com/embed/Q2r2u4cR0eA"},
-55:{text:"الرَّحْمَٰنُ عَلَّمَ الْقُرْآنَ",yt:"https://www.youtube.com/embed/Q2r2u4cR0eA"}
-};
+const ayat={"112":"قُلْ هُوَ اللَّهُ أَحَدٌ","113":"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","114":"قُلْ أَعُوذُ بِرَبِّ النَّاسِ","1":"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ","67":"تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ","55":"الرَّحْمَٰنُ عَلَّمَ الْقُرْآنَ"};
 let sel=document.getElementById('sura'); suras.forEach((s,i)=>{let o=document.createElement('option');o.value=i+1;o.textContent="سورة "+s;sel.appendChild(o)}); sel.value=112;
-function make(){ let v=parseInt(sel.value); let d=data[v]||{text:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",yt:data[112].yt}; document.getElementById('aya').innerHTML=d.text; document.getElementById('suraName').textContent="سورة "+suras[v-1]; document.getElementById('yt').src=d.yt; document.getElementById('duaaShow').textContent=document.getElementById('duaa').value; }
-function sharePage(){ prompt("انسخ الرابط:", location.href); }
+let cur=112, srv=0;
+const servers=["https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/","https://server8.mp3quran.net/islam/","https://server14.mp3quran.net/islam/"];
+function make(){ cur=parseInt(sel.value); document.getElementById('aya').innerHTML=ayat[cur]||ayat[112]; document.getElementById('suraName').textContent="سورة "+suras[cur-1]; document.getElementById('duaaShow').textContent=document.getElementById('duaa').value; document.getElementById('msg').textContent="سورة "+suras[cur-1]+" جاهزة - دوس تشغيل"; }
+function playIslam(){ let s=String(cur).padStart(3,'0'); let url=servers[srv]+s+".mp3"; document.getElementById('msg').textContent="جاري التشغيل سيرفر "+(srv+1)+"... انتظر"; let a=document.getElementById('audio'); a.src=url; a.play().then(()=>{document.getElementById('msg').textContent="✅ شغال - إسلام صبحي - سورة "+suras[cur-1]}).catch(()=>{document.getElementById('msg').textContent="النت ضعيف - دوس جرب سيرفر تاني";}); }
+function nextServer(){ srv=(srv+1)%servers.length; playIslam(); }
+function shareIt(){ prompt("انسخ الرابط:",location.href); }
 document.getElementById('duaa').addEventListener('input',()=>document.getElementById('duaaShow').textContent=document.getElementById('duaa').value);
 sel.addEventListener('change',make);
 make();
