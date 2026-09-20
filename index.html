@@ -7,14 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
 <style>
 body{background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;margin:0;padding:10px}
-h2{font-family:'Reem Kufi';color:#FFD700}
-canvas{width:100%;max-width:400px;border-radius:15px;box-shadow:0 0 20px #FFD700}
+h2{font-family:'Reem Kufi';color:#FFD700;margin-bottom:5px}
+#counter{background:#111;border:1px solid #FFD700;border-radius:10px;padding:8px 15px;display:inline-block;margin:10px;font-family:'Reem Kufi'}
+#counter span{color:#FFD700;font-weight:bold}
+canvas{width:100%;max-width:400px;border-radius:15px;box-shadow:0 0 20px #FFD70055}
 button{background:#27ae60;color:#fff;padding:14px 25px;border:none;border-radius:10px;font-size:18px;margin:8px;font-weight:bold}
 select{padding:12px;font-size:18px;border-radius:8px;width:90%;max-width:400px}
 </style>
 </head>
 <body>
 <h2>🌙 صدقة جارية - زالنجي - دارفور</h2>
+<div id="counter">👁️ عدد الزوار: <span id="count">... جاري التحميل</span><br><small style="color:#aaa">كل زيارة = حسنة جارية لك</small></div>
+<br>
 <select id="sura"></select>
 <br><br>
 <canvas id="c" width="1080" height="1920"></canvas>
@@ -24,13 +28,17 @@ select{padding:12px;font-size:18px;border-radius:8px;width:90%;max-width:400px}
 <p style="color:#aaa">أجرك ماشي كل ما زول شارك</p>
 <script>
 const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
-const ayat=["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","قُلْ هُوَ اللَّهُ أَحَدٌ","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","قُلْ أَعُوذُ بِرَبِّ النَّاسِ","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ","وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا","إِنَّ مَعَ الْعُسْرِ يُسْرًا","فَاذْكُرُونِي أَذْكُرْكُمْ","وَاللَّهُ خَيْرٌ حَافِظًا"];
+const ayat=["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","قُلْ هُوَ اللَّهُ أَحَدٌ","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","قُلْ أَعُوذُ بِرَبِّ النَّاسِ","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ","وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا","إِنَّ مَعَ الْعُسْرِ يُسْرًا","فَاذْكُرُونِي أَذْكُرْكُمْ"];
 const bgs=["https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=1080","https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1080","https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1080","https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1080"];
 const canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
 let curAya=ayat[2], curSura="سورة الفلق";
 const sel=document.getElementById('sura');
 suras.forEach((s,i)=>{ let o=document.createElement('option'); o.value=i; o.textContent="سورة "+s; sel.appendChild(o); });
 sel.selectedIndex=112;
+
+// العداد
+fetch('https://api.countapi.xyz/hit/nhar123-a-zalingei-2026/visits').then(r=>r.json()).then(d=>{ document.getElementById('count').textContent=d.value+" زائر"; }).catch(()=>{ let c=localStorage.getItem('z-counter')||0; c++; localStorage.setItem('z-counter',c); document.getElementById('count').textContent=c+" زائر (محلي)"; });
+
 function draw(){ const img=new Image(); img.crossOrigin="anonymous"; img.src=bgs[Math.floor(Math.random()*bgs.length)]; img.onload=()=>{ ctx.drawImage(img,0,0,1080,1920); ctx.fillStyle="rgba(0,0,0,0.55)"; ctx.fillRect(0,0,1080,1920); ctx.fillStyle="#fff"; ctx.textAlign="center"; ctx.font="bold 72px Amiri"; wrapText(curAya,540,850,900,85); ctx.font="38px Reem Kufi"; ctx.fillStyle="#FFD700"; ctx.fillText(curSura,540,1150); ctx.fillStyle="#fff"; ctx.font="28px Amiri"; ctx.fillText("صدقة جارية - زالنجي، دارفور",540,1220); ctx.fillText(new Date().toLocaleDateString('ar-SD'),540,1260); } }
 function wrapText(text,x,y,maxW,lineH){ let words=text.split(' '), line='', lines=[]; for(let w of words){ let test=line+w+' '; if(ctx.measureText(test).width>maxW&&line!=''){ lines.push(line); line=w+' '; }else line=test; } lines.push(line); let startY=y-(lines.length-1)*lineH/2; lines.forEach((l,i)=>ctx.fillText(l,x,startY+i*lineH)); }
 function make(){ curSura=sel.options[sel.selectedIndex].text; curAya=ayat[Math.floor(Math.random()*ayat.length)]; draw(); }
