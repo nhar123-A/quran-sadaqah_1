@@ -3,104 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>فيديو قرآن - إسلام صبحي - من نهار</title>
+<title>إسلام صبحي - من نهار</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
 <style>
 body{background:#000;color:#fff;text-align:center;font-family:'Amiri',serif;padding:12px;margin:0}
 h2{color:#FFD700;font-family:'Reem Kufi'}
-.card{max-width:380px;margin:12px auto;background:#0f2027;border:2px solid #FFD700;border-radius:20px;padding:25px 15px;min-height:540px;display:flex;flex-direction:column;justify-content:center;position:relative}
-.aya{font-size:30px;line-height:2.1;font-weight:bold}
-.sura{color:#FFD700;font-size:22px;font-family:'Reem Kufi';margin-top:12px}
-.name{color:#ddd;font-size:14px;margin-top:10px}
-.duaa{color:#FFD700;font-size:16px;margin-top:12px;border-top:1px solid #FFD70066;padding-top:10px}
-button{padding:12px 16px;border:none;border-radius:10px;margin:4px;font-weight:bold;font-size:14px}
-select,input{width:92%;max-width:380px;padding:11px;border-radius:8px;margin:5px;background:#222;color:#fff;border:1px solid #FFD700}
-audio{width:92%;max-width:380px;margin:10px;background:#111;border-radius:10px}
-.badge{background:linear-gradient(45deg,#FFD700,#FFA500);color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold;display:inline-block;margin:5px}
+.card{max-width:380px;margin:12px auto;background:#0f2027;border:2px solid #FFD700;border-radius:20px;padding:25px 15px;min-height:500px;display:flex;flex-direction:column;justify-content:center}
+.aya{font-size:28px;line-height:2;font-weight:bold}
+.sura{color:#FFD700;font-size:20px;font-family:'Reem Kufi'}
+.duaa{color:#FFD700;font-size:15px;margin-top:10px;border-top:1px solid #FFD70066;padding-top:8px}
+button{padding:11px 14px;border:none;border-radius:10px;margin:4px;font-weight:bold}
+select,input{width:92%;max-width:380px;padding:10px;border-radius:8px;margin:5px;background:#222;color:#fff;border:1px solid #FFD700}
+audio{width:92%;max-width:380px;margin:10px}
+#status{color:#FFD700;font-size:13px;margin:5px}
 </style>
 </head>
 <body>
-<h2>🎥 إسلام صبحي - من نهار - انكاء</h2>
-<div class="badge">🔥 صوت إسلام صبحي</div>
-<div style="border:1px solid #FFD700;padding:6px 12px;border-radius:10px;display:inline-block;background:#111">👁️ <b id="cnt">0</b> زائر</div><br>
-
+<h2>🕌 إسلام صبحي - من نهار - انكاء</h2>
+<div id="status">جاري تجهيز الصوت...</div>
+<div style="border:1px solid #FFD700;padding:5px 10px;border-radius:10px;display:inline-block;background:#111">👁️ <b id="cnt">0</b></div><br>
 <select id="sura"></select><br>
-<select id="reciter">
-<option value="Islam_Sobhi" selected>إسلام صبحي - المفضل ❤️</option>
-<option value="Alafasy">مشاري العفاسي</option>
-<option value="Maher_AlMuaiqly">ماهر المعيقلي</option>
-<option value="Yasser_Ad-Dosari">ياسر الدوسري</option>
-</select><br>
 <input id="duaa" value="اللهم اغفر لنهار ولوالديه وارحمهما"><br>
-
-<audio id="audio" controls loop></audio>
-
+<audio id="audio" controls></audio>
 <div id="card" class="card">
-  <div style="font-size:42px">🕌</div>
-  <div id="aya" class="aya">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+  <div style="font-size:40px">🎧</div>
+  <div id="aya" class="aya">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
   <div id="suraName" class="sura">سورة الفاتحة - إسلام صبحي</div>
-  <div class="name">صدقة جارية - من نهار - انكاء<br>دارفور</div>
+  <div style="color:#ddd;font-size:13px;margin-top:8px">صدقة جارية - من نهار - انكاء</div>
   <div id="duaaShow" class="duaa">اللهم اغفر لنهار ولوالديه وارحمهما</div>
-  <div style="color:#888;font-size:11px;margin-top:8px">بصوت إسلام صبحي</div>
 </div>
-
 <button onclick="make()" style="background:#27ae60;color:#fff">تحديث ✨</button>
-<button onclick="playAudio()" style="background:#FFD700;color:#000">▶️ تشغيل إسلام صبحي</button>
-<button onclick="alert('اعمل تسجيل شاشة من تلفونك 15 ثانية وانت مشغل الصوت - ارفعو تيك توك!')" style="background:#e74c3c;color:#fff">🔴 كيف اعمل فيديو؟</button>
+<button onclick="tryPlay()" style="background:#FFD700;color:#000">▶️ شغل الصوت (جرب)</button>
 <button onclick="sharePage()" style="background:#25D366;color:#fff">واتساب 📤</button>
-
-<p style="color:#aaa;font-size:11px">الطريقة السهلة للفيديو: شغل الصوت + اعمل تسجيل شاشة من تلفونك<br>سامسونج: اسحب من فوق > تسجيل الشاشة</p>
-
+<p style="color:#aaa;font-size:11px">لو النت ضعيف: دوس تشغيل كم مرة - عندنا 3 سيرفرات<br>أو اختار سورة قصيرة: الإخلاص - الفلق - الناس (حجمها صغير)</p>
 <script>
 const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
-
-const islamSobhiLinks={
-1:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/001.mp3",
-2:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3",
-13:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/013.mp3",
-18:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/018.mp3",
-36:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/036.mp3",
-55:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/055.mp3",
-67:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/067.mp3",
-112:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/112.mp3",
-113:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/113.mp3",
-114:"https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/114.mp3"
-};
-
-const ayatText={
-1:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-2:"الم - ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ",
-13:"الرَّعْدُ يُسَبِّحُ بِحَمْدِهِ",
-18:"الْحَمْدُ لِلَّهِ الَّذِي أَنزَلَ عَلَىٰ عَبْدِهِ الْكِتَابَ - الكهف",
-36:"يس - وَالْقُرْآنِ الْحَكِيمِ",
-55:"الرَّحْمَٰنُ - عَلَّمَ الْقُرْآنَ",
-67:"تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ",
-112:"قُلْ هُوَ اللَّهُ أَحَدٌ",
-113:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
-114:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ"
-};
-
+const ayatText={1:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",112:"قُلْ هُوَ اللَّهُ أَحَدٌ",113:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",114:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ",67:"تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ",55:"الرَّحْمَٰنُ - عَلَّمَ الْقُرْآنَ"};
 let sel=document.getElementById('sura'); suras.forEach((s,i)=>{let o=document.createElement('option');o.value=i+1;o.textContent="سورة "+s;sel.appendChild(o)}); sel.value=1;
-let c=parseInt(localStorage.getItem('nhar-c')||'17'); c++; localStorage.setItem('nhar-c',c); document.getElementById('cnt').textContent=c;
-
-let curSura=1;
-function make(){ curSura=parseInt(sel.value); let txt=ayatText[curSura]||"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ"; document.getElementById('aya').innerHTML=txt; document.getElementById('suraName').textContent="سورة "+suras[curSura-1]+" - إسلام صبحي"; document.getElementById('duaaShow').textContent=document.getElementById('duaa').value; playAudio(); }
-
-function playAudio(){
-  let rec=document.getElementById('reciter').value;
+let c=parseInt(localStorage.getItem('nhar-c')||'18'); c++; localStorage.setItem('nhar-c',c); document.getElementById('cnt').textContent=c;
+let curSura=1, serverIdx=0;
+const servers=["https://server16.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/","https://server8.mp3quran.net/islam/","https://server14.mp3quran.net/islam/"];
+function make(){ curSura=parseInt(sel.value); document.getElementById('aya').innerHTML=ayatText[curSura]||"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ"; document.getElementById('suraName').textContent="سورة "+suras[curSura-1]+" - إسلام صبحي"; document.getElementById('duaaShow').textContent=document.getElementById('duaa').value; document.getElementById('status').textContent="سورة "+suras[curSura-1]+" جاهزة - دوس تشغيل"; }
+function tryPlay(){
+  let s=String(curSura).padStart(3,'0');
+  let url=servers[serverIdx]+s+".mp3";
+  document.getElementById('status').textContent="جاري المحاولة سيرفر "+(serverIdx+1)+"... النت ضعيف انتظر";
   let audio=document.getElementById('audio');
-  if(rec==="Islam_Sobhi"){
-    let url=islamSobhiLinks[curSura]||islamSobhiLinks[1];
-    audio.src=url;
-  }else{
-    let s=String(curSura).padStart(3,'0');
-    audio.src=`https://everyayah.com/data/${rec}/${s}001.mp3`;
-  }
-  audio.play().catch(()=>alert("النت ضعيف، انتظر شوية وجرب تاني"));
+  audio.src=url;
+  audio.play().then(()=>{document.getElementById('status').textContent="✅ شغال - إسلام صبحي - سورة "+suras[curSura-1]}).catch(()=>{
+    serverIdx=(serverIdx+1)%servers.length;
+    if(serverIdx!=0){ document.getElementById('status').textContent="السيرفر ما اشتغل - جرب تاني دوس تشغيل"; setTimeout(tryPlay,1000); }
+    else{ document.getElementById('status').textContent="النت ضعيف شديد - جرب سورة قصيرة: 112 - 113 - 114"; }
+  });
 }
-
-function sharePage(){ if(navigator.share){ navigator.share({title:"إسلام صبحي - من نهار", url:location.href}); }else{ prompt("انسخ الرابط:", location.href); } }
-
+function sharePage(){ if(navigator.share){navigator.share({title:"إسلام صبحي",url:location.href})}else{prompt("انسخ:",location.href)} }
 document.getElementById('duaa').addEventListener('input',()=>document.getElementById('duaaShow').textContent=document.getElementById('duaa').value);
 sel.addEventListener('change',make);
 make();
