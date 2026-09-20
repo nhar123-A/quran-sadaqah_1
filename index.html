@@ -12,20 +12,22 @@ h2{font-family:'Reem Kufi';color:#FFD700;margin-bottom:5px}
 #counter span{color:#FFD700;font-weight:bold}
 canvas{width:100%;max-width:400px;border-radius:15px;box-shadow:0 0 20px #FFD70055}
 button{background:#27ae60;color:#fff;padding:14px 25px;border:none;border-radius:10px;font-size:18px;margin:8px;font-weight:bold}
-select{padding:12px;font-size:18px;border-radius:8px;width:90%;max-width:400px}
+select,input{padding:12px;font-size:16px;border-radius:8px;width:90%;max-width:400px;margin:5px}
+input{border:2px solid #FFD700;background:#111;color:#fff}
 </style>
 </head>
 <body>
 <h2>🌙 صدقة جارية - من نهار - انكاء</h2>
 <div id="counter">👁️ عدد الزوار: <span id="count">... جاري التحميل</span><br><small style="color:#aaa">كل زيارة = حسنة جارية لك</small></div>
 <br>
-<select id="sura"></select>
+<select id="sura"></select><br>
+<input id="duaa" type="text" value="اللهم اغفر لنهار ولوالديه وارحمهما" placeholder="اكتب دعاءك هنا">
 <br><br>
 <canvas id="c" width="1080" height="1920"></canvas>
 <br>
 <button onclick="make()">تحديث الصورة ✨</button>
 <button onclick="share()" style="background:#25D366">مشاركة واتساب 📤</button>
-<p style="color:#aaa">أجرك ماشي كل ما زول شارك</p>
+<p style="color:#aaa">دعاءك حيظهر في كل صورة</p>
 <script>
 const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
 const ayat=["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","قُلْ هُوَ اللَّهُ أَحَدٌ","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","قُلْ أَعُوذُ بِرَبِّ النَّاسِ","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ","وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا","إِنَّ مَعَ الْعُسْرِ يُسْرًا","فَاذْكُرُونِي أَذْكُرْكُمْ"];
@@ -35,11 +37,12 @@ let curAya=ayat[2], curSura="سورة الفلق";
 const sel=document.getElementById('sura');
 suras.forEach((s,i)=>{ let o=document.createElement('option'); o.value=i; o.textContent="سورة "+s; sel.appendChild(o); });
 sel.selectedIndex=112;
-fetch('https://api.countapi.xyz/hit/nhar-inkaa-final-2026/visits').then(r=>r.json()).then(d=>{ document.getElementById('count').textContent=d.value+" زائر"; }).catch(()=>{ let c=localStorage.getItem('z-counter-nhar')||0; c++; localStorage.setItem('z-counter-nhar',c); document.getElementById('count').textContent=c+" زائر (محلي)"; });
-function draw(){ const img=new Image(); img.crossOrigin="anonymous"; img.src=bgs[Math.floor(Math.random()*bgs.length)]; img.onload=()=>{ ctx.drawImage(img,0,0,1080,1920); ctx.fillStyle="rgba(0,0,0,0.55)"; ctx.fillRect(0,0,1080,1920); ctx.fillStyle="#fff"; ctx.textAlign="center"; ctx.font="bold 72px Amiri"; wrapText(curAya,540,850,900,85); ctx.font="38px Reem Kufi"; ctx.fillStyle="#FFD700"; ctx.fillText(curSura,540,1150); ctx.fillStyle="#fff"; ctx.font="28px Amiri"; ctx.fillText("صدقة جارية - من نهار - انكاء",540,1220); ctx.fillText("دارفور",540,1265); ctx.font="24px Amiri"; ctx.fillText(new Date().toLocaleDateString('ar-SD'),540,1300); } }
+fetch('https://api.countapi.xyz/hit/nhar-inkaa-duaa-2026/visits').then(r=>r.json()).then(d=>{ document.getElementById('count').textContent=d.value+" زائر"; }).catch(()=>{ let c=localStorage.getItem('z-counter-nhar')||0; c++; localStorage.setItem('z-counter-nhar',c); document.getElementById('count').textContent=c+" زائر (محلي)"; });
+function draw(){ const img=new Image(); img.crossOrigin="anonymous"; img.src=bgs[Math.floor(Math.random()*bgs.length)]; img.onload=()=>{ ctx.drawImage(img,0,0,1080,1920); ctx.fillStyle="rgba(0,0,0,0.6)"; ctx.fillRect(0,0,1080,1920); ctx.fillStyle="#fff"; ctx.textAlign="center"; ctx.font="bold 70px Amiri"; wrapText(curAya,540,750,900,85); ctx.font="36px Reem Kufi"; ctx.fillStyle="#FFD700"; ctx.fillText(curSura,540,1050); ctx.fillStyle="#fff"; ctx.font="26px Amiri"; ctx.fillText("صدقة جارية - من نهار - انكاء",540,1120); ctx.font="24px Amiri"; ctx.fillStyle="#FFD700"; let duaa=document.getElementById('duaa').value; wrapText(duaa,540,1200,850,35); ctx.fillStyle="#ccc"; ctx.font="22px Amiri"; ctx.fillText("دارفور - "+new Date().toLocaleDateString('ar-SD'),540,1350); } }
 function wrapText(text,x,y,maxW,lineH){ let words=text.split(' '), line='', lines=[]; for(let w of words){ let test=line+w+' '; if(ctx.measureText(test).width>maxW&&line!=''){ lines.push(line); line=w+' '; }else line=test; } lines.push(line); let startY=y-(lines.length-1)*lineH/2; lines.forEach((l,i)=>ctx.fillText(l,x,startY+i*lineH)); }
 function make(){ curSura=sel.options[sel.selectedIndex].text; curAya=ayat[Math.floor(Math.random()*ayat.length)]; draw(); }
-function share(){ canvas.toBlob(b=>{ const f=new File([b],"nhar-inkaa.png",{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"صدقة جارية من نهار",text:curSura}) }else{ const a=document.createElement('a'); a.download="nhar-inkaa.png"; a.href=canvas.toDataURL(); a.click(); alert("الصورة نزلت، رسلها واتساب والأجر ليك يا نهار!"); } }); }
+function share(){ canvas.toBlob(b=>{ const f=new File([b],"nhar-inkaa-duaa.png",{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"صدقة جارية من نهار",text=curSura}) }else{ const a=document.createElement('a'); a.download="nhar-inkaa-duaa.png"; a.href=canvas.toDataURL(); a.click(); alert("الصورة بدعاءك نزلت، رسلها!"); } }); }
+document.getElementById('duaa').addEventListener('input',draw);
 draw();
 </script>
 </body>
